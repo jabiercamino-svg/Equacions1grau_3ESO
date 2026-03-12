@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Equacions de 1r grau. Activitats i problemes</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{
+    delimiters:[
+      {left:'$$',right:'$$',display:true},
+      {left:'\\(',right:'\\)',display:false}
+    ],throwOnError:false
+  });"></script>
+
+<style>
+:root{
+  --navy:#0e1d3c; --blue:#1b3d94; --mid:#2f5fc4;
+  --accent:#f0a500; --rose:#e63960; --green:#1aad68;
+  --purple:#7c3aed; --teal:#0d8a8a;
+  --light:#eef3ff; --white:#fff; --gray:#6b7280;
+  --bg:#f2f5fb; --border:#dde4f5;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--navy);line-height:1.6;}
+
+/* HERO */
+.hero{
+  background:linear-gradient(135deg,#0e1d3c 0%,#1b3d94 55%,#2f5fc4 100%);
+  padding:58px 24px 72px;text-align:center;position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 80% 40%,rgba(74,144,217,.18) 0%,transparent 60%),
+             radial-gradient(ellipse at 15% 75%,rgba(240,165,0,.1) 0%,transparent 55%);
+}
+.hero-math{position:absolute;font-family:'Playfair Display',serif;font-size:7rem;font-weight:900;opacity:.04;color:#fff;pointer-events:none;}
+.hero-math.l{left:-10px;top:0;} .hero-math.r{right:-10px;bottom:-20px;}
+.hero-pill{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(240,165,0,.5);color:var(--accent);font-weight:800;font-size:.75rem;letter-spacing:3px;text-transform:uppercase;padding:5px 18px;border-radius:999px;margin-bottom:20px;position:relative;}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,5vw,3rem);color:#fff;line-height:1.15;margin-bottom:8px;position:relative;}
+.hero h1 em{color:var(--accent);font-style:normal;}
+.hero p{color:rgba(255,255,255,.6);font-size:.95rem;font-weight:600;position:relative;}
+
+/* STICKY NAV */
+.toc{
+  background:var(--white);border-bottom:2px solid var(--border);
+  padding:12px 20px;display:flex;justify-content:center;
+  flex-wrap:wrap;gap:5px 4px;
+  position:sticky;top:0;z-index:100;
+  box-shadow:0 2px 12px rgba(14,29,60,.08);
+}
+.toc a{
+  display:inline-flex;align-items:center;gap:4px;
+  background:var(--light);color:var(--blue);
+  font-weight:800;font-size:.73rem;padding:5px 11px;
+  border-radius:999px;text-decoration:none;
+  border:1px solid transparent;transition:all .18s;white-space:nowrap;
+}
+.toc a:hover{background:var(--blue);color:#fff;transform:translateY(-1px);}
+.toc-dot{color:#ccd5ee;font-size:.7rem;align-self:center;}
+
+/* MAIN */
+main{max-width:920px;margin:0 auto;padding:40px 20px 80px;}
+
+/* SECTION HEADER */
+.sec-head{display:flex;align-items:center;gap:14px;margin:58px 0 22px;scroll-margin-top:68px;}
+.sec-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:900;color:#fff;flex-shrink:0;}
+.ic-blue  {background:linear-gradient(135deg,#1b3d94,#2f5fc4);}
+.ic-green {background:linear-gradient(135deg,#128050,#1aad68);}
+.ic-orange{background:linear-gradient(135deg,#b87000,#f0a500);}
+.ic-rose  {background:linear-gradient(135deg,#a01832,#e63960);}
+.ic-teal  {background:linear-gradient(135deg,#096060,#0d8a8a);}
+.ic-purple{background:linear-gradient(135deg,#5b21b6,#7c3aed);}
+.sec-info h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--navy);}
+.sec-info p{font-size:.83rem;color:var(--gray);font-weight:600;margin-top:2px;}
+
+/* FORMULA STRIP */
+.fml-strip{
+  background:linear-gradient(135deg,var(--navy),#1b3d94);
+  border-radius:14px;padding:14px 24px;
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:24px;
+}
+.fml-label{font-size:.72rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--accent);flex-shrink:0;}
+.fml-body{font-size:.96rem;font-weight:600;color:#fff;}
+
+/* EXEMPLE */
+.exemple{background:var(--white);border:2px solid var(--accent);border-radius:18px;margin-bottom:24px;overflow:hidden;box-shadow:0 4px 18px rgba(240,165,0,.12);}
+.exemple-header{background:linear-gradient(135deg,#fffbe6,#fff3c0);padding:12px 22px;display:flex;align-items:center;gap:12px;border-bottom:2px solid #ffd84a;}
+.exemple-badge{background:var(--accent);color:#fff;font-weight:900;font-size:.74rem;letter-spacing:1.5px;text-transform:uppercase;padding:4px 13px;border-radius:999px;flex-shrink:0;}
+.exemple-title{font-weight:800;font-size:.94rem;color:var(--navy);}
+.exemple-body{padding:20px 24px;}
+.exemple-sub{font-weight:800;font-size:.79rem;letter-spacing:1px;text-transform:uppercase;color:var(--blue);margin-bottom:10px;}
+.exemple-hr{border:none;border-top:1.5px dashed #d8daee;margin:18px 0;}
+
+.step{margin-bottom:14px;}
+.step-label{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:.76rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:6px;}
+.step-label::before{content:attr(data-n);background:var(--blue);color:#fff;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;flex-shrink:0;}
+.step-content{background:var(--light);border-radius:10px;padding:10px 15px;font-size:.91rem;font-weight:600;color:var(--navy);border-left:4px solid var(--mid);}
+.math-block{display:block;text-align:center;padding:7px 0;}
+.concl{background:linear-gradient(135deg,#e6f8ef,#d0f0e0);border:1.5px solid #80d4b0;border-radius:10px;padding:10px 15px;font-weight:800;color:#0d6040;font-size:.92rem;display:flex;align-items:center;gap:8px;margin-top:4px;}
+.concl::before{content:'✓';background:var(--green);color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;flex-shrink:0;}
+.note-tip{font-size:.81rem;color:var(--gray);margin-top:10px;font-weight:600;}
+
+/* EXERCISE CARD */
+.ex-card{background:var(--white);border-radius:18px;border:1.5px solid var(--border);box-shadow:0 4px 18px rgba(14,29,60,.07);margin-bottom:24px;overflow:hidden;transition:transform .2s,box-shadow .2s;scroll-margin-top:68px;}
+.ex-card:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(14,29,60,.12);}
+.ex-header{display:flex;align-items:center;gap:14px;padding:15px 22px;border-bottom:1.5px solid #f0f3fa;}
+.ex-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--mid);min-width:40px;line-height:1;}
+.ex-title{font-size:.97rem;font-weight:800;color:var(--navy);}
+.ex-sub{font-size:.78rem;color:var(--gray);font-weight:600;margin-top:2px;}
+.ex-body{padding:20px 22px;}
+
+/* grids */
+.apt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px 16px;}
+.apt-grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 16px;}
+.apt{display:flex;align-items:baseline;gap:8px;padding:9px 11px;border-radius:10px;background:var(--light);font-size:.9rem;font-weight:600;transition:background .15s;}
+.apt:hover{background:#d8e5ff;}
+.apt-l{font-weight:900;color:var(--mid);min-width:22px;font-size:.83rem;}
+
+/* PROBLEM CARDS */
+.prob-card{background:var(--white);border-radius:18px;border:1.5px solid var(--border);box-shadow:0 4px 18px rgba(14,29,60,.07);margin-bottom:20px;overflow:hidden;transition:transform .2s,box-shadow .2s;scroll-margin-top:68px;}
+.prob-card:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(14,29,60,.12);}
+.prob-header{display:flex;align-items:center;gap:13px;padding:14px 20px;border-bottom:1.5px solid #f0f3fa;}
+.prob-num{background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;font-weight:900;font-size:.9rem;width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.prob-tag{font-size:.69rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:999px;margin-left:auto;}
+.pt-nb{background:#e0eaff;color:var(--blue);}
+.pt-ge{background:#d4f0e0;color:#0d6040;}
+.pt-ed{background:#ffe8d0;color:#8a3a00;}
+.pt-cx{background:#f3e8ff;color:#5b21b6;}
+.prob-body{padding:14px 20px;}
+.prob-text{font-size:.95rem;font-weight:600;color:var(--navy);line-height:1.7;}
+
+/* DIVIDER */
+.divider{height:3px;background:linear-gradient(90deg,var(--navy),var(--mid),var(--accent),transparent);border-radius:999px;margin:52px 0 0;}
+
+/* ANSWERS */
+.answers-section{margin-top:68px;scroll-margin-top:68px;}
+.answers-title{font-family:'Playfair Display',serif;font-size:2rem;color:var(--navy);margin-bottom:26px;padding-bottom:12px;border-bottom:3px solid var(--mid);}
+.ans-card{background:var(--white);border-radius:16px;border:1.5px solid var(--border);margin-bottom:16px;overflow:hidden;box-shadow:0 2px 10px rgba(14,29,60,.06);}
+.ans-header{display:flex;align-items:center;gap:13px;padding:12px 20px;border-bottom:1.5px solid #f0f3fa;cursor:pointer;user-select:none;transition:background .15s;}
+.ans-header:hover{background:#f7f9ff;}
+.ans-num{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;color:var(--mid);min-width:32px;}
+.ans-num.green{color:var(--green);}
+.ans-ex-title{font-size:.92rem;font-weight:800;color:var(--navy);flex:1;}
+.ans-toggle{background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;border:none;padding:7px 17px;border-radius:999px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.79rem;cursor:pointer;display:flex;align-items:center;gap:5px;transition:all .2s;flex-shrink:0;}
+.ans-toggle:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(26,61,148,.28);}
+.ans-toggle .ch{transition:transform .3s;}
+.ans-toggle.open{background:linear-gradient(135deg,#128050,#1aad68);}
+.ans-toggle.open .ch{transform:rotate(180deg);}
+.ans-body{display:none;padding:16px 20px;animation:fadeSlide .25s ease;}
+.ans-body.visible{display:block;}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(-5px);}to{opacity:1;transform:translateY(0);}}
+
+.ans-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;}
+.ans-item{background:var(--light);border-radius:10px;padding:8px 12px;display:flex;align-items:center;gap:8px;border:1px solid #c8d8f5;}
+.ans-l{font-weight:900;color:var(--mid);font-size:.83rem;min-width:20px;}
+.ans-v{font-weight:700;font-size:.87rem;color:var(--navy);}
+
+.prob-ans{background:linear-gradient(135deg,#f0f6ff,#e6eeff);border:1.5px solid #b0c8f5;border-radius:12px;padding:14px 18px;font-size:.91rem;font-weight:600;color:var(--navy);line-height:1.75;}
+.prob-ans strong{color:var(--blue);}
+
+@media(max-width:680px){
+  .apt-grid{grid-template-columns:1fr 1fr;}
+  .ans-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:400px){
+  .apt-grid,.apt-grid-2{grid-template-columns:1fr;}
+  .ans-grid{grid-template-columns:1fr;}
+}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:4px 0;}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-math l">x</div>
+  <div class="hero-math r">ax+b=c</div>
+  <div class="hero-pill">INS Consell de Cent · 3r ESO</div>
+  <h1>Equacions de 1r grau.<br><em>Activitats i problemes</em></h1>
+  <p>INS Consell de Cent · 3r ESO · Matemàtiques</p>
+</header>
+
+<!-- STICKY NAV -->
+<nav class="toc">
+  <a href="#s-senzilles">➕ Senzilles</a>
+  <span class="toc-dot">·</span>
+  <a href="#s-llargues">🔢 Eq. 1r grau</a>
+  <span class="toc-dot">·</span>
+  <a href="#s-parentesis">( ) Parèntesis</a>
+  <span class="toc-dot">·</span>
+  <a href="#s-denominadors">÷ Denominadors</a>
+  <span class="toc-dot">·</span>
+  <a href="#s-problemes">📝 Problemes</a>
+</nav>
+
+<main>
+
+<!-- ═══════════════════════════════════════
+     SECCIÓ 1 — EQUACIONS SENZILLES SENSE PARÈNTESIS
+═══════════════════════════════════════ -->
+<div class="sec-head" id="s-senzilles">
+  <div class="sec-icon ic-teal" style="font-size:.85rem;">I</div>
+  <div class="sec-info">
+    <h2>Equacions senzilles sense parèntesis</h2>
+    <p>Termes simples · Aïlla la incògnita pas a pas</p>
+  </div>
+</div>
+
+<div class="fml-strip">
+  <span class="fml-label">Estratègia</span>
+  <span class="fml-body">Passa els termes amb \(x\) a un costat i els nombres a l'altre. Divideix pel coeficient de \(x\).</span>
+</div>
+
+<!-- Exemple 1 -->
+<div class="exemple">
+  <div class="exemple-header">
+    <span class="exemple-badge">Exemple resolt</span>
+    <span class="exemple-title">Equació senzilla: \(2x + 5 = 13\)</span>
+  </div>
+  <div class="exemple-body">
+    <div class="step">
+      <div class="step-label" data-n="1">Passa el nombre al costat dret</div>
+      <div class="step-content"><span class="math-block">\(2x = 13 - 5 = 8\)</span></div>
+    </div>
+    <div class="step">
+      <div class="step-label" data-n="2">Divideix els dos costats pel coeficient de \(x\)</div>
+      <div class="step-content"><span class="math-block">\(x = \dfrac{8}{2} = 4\)</span></div>
+    </div>
+    <div class="concl">Solució: \(x = 4\)</div>
+    <p class="note-tip">⚠️ Comprova: \(2 \cdot 4 + 5 = 8 + 5 = 13\) ✓</p>
+  </div>
+</div>
+
+<!-- EXERCICI 1 -->
+<div class="ex-card" id="ex1">
+  <div class="ex-header">
+    <div class="ex-num">1</div>
+    <div>
+      <div class="ex-title">Equacions senzilles sense parèntesis (I)</div>
+      <div class="ex-sub">Nivell d'inici · Aïlla la incògnita en un sol pas o dos</div>
+    </div>
+  </div>
+  <div class="ex-body">
+    <div class="apt-grid">
+      <div class="apt"><span class="apt-l">a)</span>\(x + 3 = 10\)</div>
+      <div class="apt"><span class="apt-l">b)</span>\(x - 7 = 4\)</div>
+      <div class="apt"><span class="apt-l">c)</span>\(3x = 18\)</div>
+      <div class="apt"><span class="apt-l">d)</span>\(5 - x = 2\)</div>
+      <div class="apt"><span class="apt-l">e)</span>\(\dfrac{x}{4} = 3\)</div>
+    </div>
+  </div>
+</div>
+
+<!-- EXERCICI 2 -->
+<div class="ex-card" id="ex2">
+  <div class="ex-header">
+    <div class="ex-num">2</div>
+    <div>
+      <div class="ex-title">Equacions senzilles sense parèntesis (II)</div>
+      <div class="ex-sub">Coeficients més grans · Fraccions senzilles · Valors negatius</div>
+    </div>
+  </div>
+  <div class="ex-body">
+    <div class="apt-grid">
+      <div class="apt"><span class="apt-l">a)</span>\(4x - 3 = 9\)</div>
+      <div class="apt"><span class="apt-l">b)</span>\(2x + 7 = 1\)</div>
+      <div class="apt"><span class="apt-l">c)</span>\(\dfrac{x}{5} + 2 = 6\)</div>
+      <div class="apt"><span class="apt-l">d)</span>\(12 - 3x = 0\)</div>
+      <div class="apt"><span class="apt-l">e)</span>\(7x - 14 = 21\)</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SECCIÓ 2 — EQUACIONS AMB MÉS TERMES
+═══════════════════════════════════════ -->
+<div class="divider"></div>
+
+<div class="sec-head" id="s-llargues">
+  <div class="sec-icon ic-blue" style="font-size:.85rem;">II</div>
+  <div class="sec-info">
+    <h2>Equacions sense parèntesis amb més termes</h2>
+    <p>Incògnites i nombres als dos costats · Agrupa i simplifica</p>
+  </div>
+</div>
+
+<!-- Exemple 2 -->
+<div class="exemple">
+  <div class="exemple-header">
+    <span class="exemple-badge">Exemple resolt</span>
+    <span class="exemple-title">Equació amb termes als dos costats: \(5x - 4 = 2x + 11\)</span>
+  </div>
+  <div class="exemple-body">
+    <div class="step">
+      <div class="step-label" data-n="1">Passa els termes amb \(x\) a l'esquerra i els nombres a la dreta</div>
+      <div class="step-content"><span class="math-block">\(5x - 2x = 11 + 4\)</span></div>
+    </div>
+    <div class="step">
+      <div class="step-label" data-n="2">Agrupa els termes semblants</div>
+      <div class="step-content"><span class="math-block">\(3x = 15\)</span></div>
+    </div>
+    <div class="step">
+      <div class="step-label" data-n="3">Aïlla \(x\)</div>
+      <div class="step-content"><span class="math-block">\(x = \dfrac{15}{3} = 5\)</span></div>
+    </div>
+    <div class="concl">Solució: \(x = 5\)</div>
+  </div>
+</div>
+
+<!-- EXERCICI 3 -->
+<div class="ex-card" id="ex3">
+  <div class="ex-header">
+    <div class="ex-num">3</div>
+    <div>
+      <div class="ex-title">Equacions sense parèntesis — Més termes (I)</div>
+      <div class="ex-sub">Incògnites i nombres als dos costats de l'igual</div>
+    </div>
+  </div>
+  <div class="ex-body">
+    <div class="apt-grid">
+      <div class="apt"><span class="apt-l">a)</span>\(3x + 5 = x + 13\)</div>
+      <div class="apt"><span class="apt-l">b)</span>\(4x - 2 = 2x + 8\)</div>
+      <div class="apt"><span class="apt-l">c)</span>\(7x + 1 = 4x + 10\)</div>
+      <div class="apt"><span class="apt-l">d)</span>\(5x - 6 = 3x + 4\)</div>
+      <div class="apt"><span class="apt-l">e)</span>\(6x + 3 = 2x - 5\)</div>
+    </div>
+  </div>
+</div>
+
+<!-- EXERCICI 4 -->
+<div class="ex-card" id="ex4">
+  <div class="ex-header">
+    <div class="ex-num">4</div>
+    <div>
+      <div class="ex-title">Equacions sense parèntesis — Més termes (II)</div>
+      <div class="ex-sub">Tres o més termes · Coeficients fraccionaris</div>
+    </div>
+  </div>
+  <div class="ex-body">
+    <div class="apt-grid">
+      <div class="apt"><span class="apt-l">a)</span>\(5x + 8 - 2x = 4x - 7\)</div>
+      <div class="apt"><span class="apt-l">b)</span>\(9x - 3 - 4x = 2x + 15\)</div>
+      <div class="apt"><span class="apt-l">c)</span>\(3x - 7 + x = 5x + 2 - 3x\)</div>
+      <div class="apt"><span class="apt-l">d)</span>\(8x + 6 - 3x = x + 30\)</div>
+      <div class="apt"><span class="apt-l">e)</span>\(2x - 10 + 5x = 4x + 8 - x\)</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SECCIÓ 3 — EQUACIONS AMB PARÈNTESIS
+═══════════════════════════════════════ -->
+<div class="divider"></div>
+
+<div class="sec-head" id="s-parentesis">
+  <div class="sec-icon ic-orange" style="font-size:1rem;">( )</div>
+  <div class="sec-info">
+    <h2>Equacions amb parèntesis</h2>
+    <p>Aplica la propietat distributiva · Desencadena i reagrupa</p>
+  </div>
+</div>
+
+<div class="fml-strip" style="flex-direction:column;align-items:flex-start;gap:8px;">
+  <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+    <span class="fml-label">Distributiva</span>
+    <span class="fml-body">\(a(b + c) = ab + ac\) &nbsp;→&nbsp; exemple: \(3(x + 4) = 3x + 12\)</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+    <span class="fml-label" style="opacity:0;pointer-events:none;">Distributiva</span>
+    <span class="fml-body">Atenció al signe negatiu: \(-2(x + 5) = -2x - 10\)</span>
+  </div>
+</div>
+
+<!-- Exemple 3 -->
+<div class="exemple">
+  <div class="exemple-header">
+    <span class="exemple-badge">Exemple resolt</span>
+    <span class="exemple-title">Equació amb parèntesis: \(3(x + 4) = 2(x + 7) - 1\)</span>
+  </div>
+  <div class="exemple-body">
+    <div class="step">
+      <div class="step-label" data-n="1">Elimina els parèntesis (distributiva)</div>
+      <div class="step-content"><span class="math-block">\(3x + 12 = 2x + 14 - 1\)</span></div>
+    </div>
+    <div class="step">
+      <div class="step-label" data-n="2">Simplifica el costat dret</div>
+      <div class="step-content"><span class="math-block">\(3x + 12 = 2x + 13\)</span></div>
+    </div>
+    <div class="step">
+      <div class="step-label" data-n="3">Agrupa i aïlla \(x\)</div>
+      <div class="step-content"><span class="math-block">\(3x - 2x = 13 - 12 \;\Rightarrow\; x = 1\)</span></div>
+    </div>
+    <div class="concl">Solució: \(x = 1\)</div>
+    <p class="note-tip">⚠️ Comprova: \(3(1+4) = 15\) i \(2(1+7)-1 = 16-1 = 15\) ✓</p>
+  </div>
+</div>
+
+<!-- EXERCICI 5 -->
+<div class="ex-card" id="ex5">
+  <div class="ex-header">
+    <div class="ex-num">5</div>
+    <div>
+      <div class="ex-title">Equacions amb parèntesis (I)</div>
+      <div class="ex-sub">Un o dos parèntesis · Coeficients senzills</div>
+    </div>
+  </div>
+  <div class="ex-body">
+    <div class="apt-grid">
+      <div class="apt"><span class="apt-l">a)</span>\(2(x + 3) = 10\)</div>
+      <div class="apt"><span class="apt-l">b)</span>\(4(x - 1) = 2x + 6\)</div>
+      <div class="apt"><span class="apt-l">c)</span>\(3(2x + 1) = 5x + 8\)</div>
+      <div class="apt"><span class="apt-l">d)</span>\(5(x - 2) = 2(x + 4)\)</div>
+      <div class="apt"><span class="apt-l">e)</span>\(-(x + 3) = 2x - 12\)</div>
+    </div>
+  </div>
+</div>
+
+<!-- EXERCICI 6 -->
+<div class="ex-card" id="ex6">
+  <div class="ex-header">
+    <div class="ex-num">6</div>
+    <div>
+      <div class="ex-title">Equacions amb parèntesis (II)</div>
+      <div class="ex-sub">Doble parèntesi · Signes negatius · Solucions enteres</div>
+    </div>
+  </div>
+  <div class="ex-body">
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div class="apt"><span class="apt-l">a)</span>\(3(x + 5) - 2(x - 1) = 22\)</div>
+      <div class="apt"><span class="apt-l">b)</span>\(4(2x - 3) = 3(x + 4) + 1\)</div>
+      <div class="apt"><span class="apt-l">c)</span>\(2(3x + 1) - (x + 4) = 3(x + 2)\)</div>
+      <div class="apt"><span class="apt-l">d)</span>\(5(x - 3) - 3(2x + 1) = -16\)</div>
+      <div class="apt"><span class="apt-l">e)</span>\(2(3x + 5) - 4(x - 1) = 3(x + 8)\)</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SECCIÓ 4 — EQUACIONS AMB DENOMINADORS
+═══════════════════════════════════════ -->
+<div class="divider"></div>
+
+<div class="sec-head" id="s-denominadors">
+  <div class="sec-icon ic-rose" style="font-size:1.1rem;">÷</div>
+  <div class="sec-info">
+    <h2>Equacions amb denominadors</h2>
+    <p>Calcula el m.c.m. dels denominadors · Multiplica tota l'equació i elimina fraccions</p>
+  </div>
+</div>
+
+<div class="fml-strip">
+  <span class="fml-label">Mètode</span>
+  <span class="fml-body">Calcula el m.c.m. dels denominadors → multiplica tots els termes → elimina fraccions → resol normalment.</span>
+</div>
+
+<!-- Exemple 4 -->
+<div class="exemple">
+  <div class="exemple-header">
+    <span class="exemple-badge">Exemple resolt</span>
+    <span class="exemple-title">Equació amb denominadors: \(\dfrac{x}{2} + \dfrac{x+1}{3} = 4\)</span>
+  </div>
+  <div class="exemple-body">
+    <div class="step">
+      <div class="step-label" data-n="1">Calcula el m.c.m. dels denominadors</div>
+      <div class="step-content"><span class="math-block">\(\text{m.c.m.}(2,\,3) = 6\)</span></div>
+    </div>
+    <div class="step">
+      <div class="step-label" data-n="2">Multiplica tota l'equació per 6</div>
+      <div class="step-content"><span class="math-block">\(\dfrac{6x}{2} + \dfrac{6(x+1)}{3} = 6 \cdot 4 \;\Rightarrow\; 3x + 2(x+1) = 24\)</span></div>
+    </div>
+    <div class="step">
+      <div class="step-label" data-n="3">Elimina els parèntesis i agrupa</div>
+      <div class="step-content"><span class="math-block">\(3x + 2x + 2 = 24 \;\Rightarrow\; 5x = 22\)</span></div>
+    </div>
+    <div class="step">
+      <div class="step-label" data-n="4">Aïlla \(x\)</div>
+      <div class="step-content"><span class="math-block">\(x = \dfrac{22}{5}\)</span></div>
+    </div>
+    <div class="concl">Solució: \(x = \dfrac{22}{5}\)</div>
+    <p class="note-tip">⚠️ No cancel·lis mai un terme sencer: multiplica <em>tots</em> els termes pel m.c.m.</p>
+  </div>
+</div>
+
+<!-- EXERCICI 7 -->
+<div class="ex-card" id="ex7">
+  <div class="ex-header">
+    <div class="ex-num">7</div>
+    <div>
+      <div class="ex-title">Equacions amb denominadors (I)</div>
+      <div class="ex-sub">Denominadors simples · m.c.m. fàcil de calcular</div>
+    </div>
+  </div>
+  <div class="ex-body">
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div class="apt"><span class="apt-l">a)</span>\(\dfrac{x}{2} + 3 = 7\)</div>
+      <div class="apt"><span class="apt-l">b)</span>\(\dfrac{x+4}{3} = \dfrac{x}{2}\)</div>
+      <div class="apt"><span class="apt-l">c)</span>\(\dfrac{2x}{5} - 1 = \dfrac{x}{2}\)</div>
+      <div class="apt"><span class="apt-l">d)</span>\(\dfrac{x-1}{4} + \dfrac{x}{2} = 3\)</div>
+      <div class="apt"><span class="apt-l">e)</span>\(\dfrac{3x}{4} = \dfrac{x+6}{2}\)</div>
+    </div>
+  </div>
+</div>
+
+<!-- EXERCICI 8 -->
+<div class="ex-card" id="ex8">
+  <div class="ex-header">
+    <div class="ex-num">8</div>
+    <div>
+      <div class="ex-title">Equacions amb denominadors (II)</div>
+      <div class="ex-sub">Tres denominadors · Numeradors amb parèntesis</div>
+    </div>
+  </div>
+  <div class="ex-body">
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div class="apt"><span class="apt-l">a)</span>\(\dfrac{x+1}{2} - \dfrac{x-1}{3} = 1\)</div>
+      <div class="apt"><span class="apt-l">b)</span>\(\dfrac{2x-3}{4} + \dfrac{x+1}{6} = 2\)</div>
+      <div class="apt"><span class="apt-l">c)</span>\(\dfrac{x}{3} - \dfrac{x-2}{6} = \dfrac{x+1}{9}\)</div>
+      <div class="apt"><span class="apt-l">d)</span>\(\dfrac{5x-1}{3} - \dfrac{2x+1}{6} = \dfrac{x}{2} + 1\)</div>
+      <div class="apt"><span class="apt-l">e)</span>\(\dfrac{3(x+2)}{4} - \dfrac{2(x-1)}{3} = \dfrac{x+5}{6}\)</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SECCIÓ 5 — PROBLEMES
+═══════════════════════════════════════ -->
+<div class="divider"></div>
+
+<div class="sec-head" id="s-problemes">
+  <div class="sec-icon ic-purple">📝</div>
+  <div class="sec-info">
+    <h2>Problemes</h2>
+    <p>Nombres consecutius · Contextos variats · Problemes d'edats</p>
+  </div>
+</div>
+
+<div class="fml-strip" style="flex-direction:column;align-items:flex-start;gap:6px;">
+  <span class="fml-label">Mètode</span>
+  <span class="fml-body">1. Defineix la incògnita.</span>
+  <span class="fml-body">2. Escriu l'equació.</span>
+  <span class="fml-body">3. Resol.</span>
+  <span class="fml-body">4. Comprova i redacta la resposta.</span>
+</div>
+
+<!-- P1 -->
+<div class="prob-card" id="p1">
+  <div class="prob-header">
+    <div class="prob-num">P1</div>
+    <div class="prob-text" style="flex:1;padding:0;">Nombres consecutius</div>
+    <span class="prob-tag pt-nb">Nombres</span>
+  </div>
+  <div class="prob-body">
+    <p class="prob-text">La suma de tres nombres enters consecutius és 54. Quins són aquests tres nombres?</p>
+  </div>
+</div>
+
+<!-- P2 -->
+<div class="prob-card" id="p2">
+  <div class="prob-header">
+    <div class="prob-num">P2</div>
+    <div class="prob-text" style="flex:1;padding:0;">Nombres consecutius parells</div>
+    <span class="prob-tag pt-nb">Nombres</span>
+  </div>
+  <div class="prob-body">
+    <p class="prob-text">Dos nombres parells consecutius sumen 86. Troba els dos nombres.</p>
+  </div>
+</div>
+
+<!-- P3 -->
+<div class="prob-card" id="p3">
+  <div class="prob-header">
+    <div class="prob-num">P3</div>
+    <div class="prob-text" style="flex:1;padding:0;">Context: repartir diners</div>
+    <span class="prob-tag pt-ge">Context</span>
+  </div>
+  <div class="prob-body">
+    <p class="prob-text">La Maria i el Joan reparteixen 120 €. La Maria rep el doble que el Joan. Quant rep cadascú?</p>
+  </div>
+</div>
+
+<!-- P4 -->
+<div class="prob-card" id="p4">
+  <div class="prob-header">
+    <div class="prob-num">P4</div>
+    <div class="prob-text" style="flex:1;padding:0;">Context: perímetre</div>
+    <span class="prob-tag pt-ge">Context</span>
+  </div>
+  <div class="prob-body">
+    <p class="prob-text">El perímetre d'un rectangle és 52 cm. El costat llarg és 6 cm més que el costat curt. Quines són les dimensions del rectangle?</p>
+  </div>
+</div>
+
+<!-- P5 -->
+<div class="prob-card" id="p5">
+  <div class="prob-header">
+    <div class="prob-num">P5</div>
+    <div class="prob-text" style="flex:1;padding:0;">Context: preus i descomptes</div>
+    <span class="prob-tag pt-ge">Context</span>
+  </div>
+  <div class="prob-body">
+    <p class="prob-text">En una botiga, una samarreta i un pantaló costen 74 € en total. El pantaló val 14 € més que el doble del preu de la samarreta. Quin és el preu de cada peça?</p>
+  </div>
+</div>
+
+<!-- P6 -->
+<div class="prob-card" id="p6">
+  <div class="prob-header">
+    <div class="prob-num">P6</div>
+    <div class="prob-text" style="flex:1;padding:0;">Context: puntuació i joc</div>
+    <span class="prob-tag pt-ge">Context</span>
+  </div>
+  <div class="prob-body">
+    <p class="prob-text">En un joc de taula, l'Arnau té 15 punts menys que el triple dels punts de la Laia. Entre els dos sumen 129 punts. Quants punts té cadascú?</p>
+  </div>
+</div>
+
+<!-- P7 -->
+<div class="prob-card" id="p7">
+  <div class="prob-header">
+    <div class="prob-num">P7</div>
+    <div class="prob-text" style="flex:1;padding:0;">Problema d'edats (I)</div>
+    <span class="prob-tag pt-ed">Edats</span>
+  </div>
+  <div class="prob-body">
+    <p class="prob-text">La Marta té el doble d'anys que el seu germà. D'aquí a 6 anys la Marta tindrà 8 anys més que el seu germà. Quants anys té cadascú ara?</p>
+  </div>
+</div>
+
+<!-- P8 -->
+<div class="prob-card" id="p8">
+  <div class="prob-header">
+    <div class="prob-num">P8</div>
+    <div class="prob-text" style="flex:1;padding:0;">Problema d'edats (II)</div>
+    <span class="prob-tag pt-ed">Edats</span>
+  </div>
+  <div class="prob-body">
+    <p class="prob-text">El pare té 28 anys més que el seu fill. Fa 4 anys, l'edat del pare era el triple de l'edat del fill. Quants anys tenen cadascun ara?</p>
+  </div>
+</div>
+
+<!-- P9 -->
+<div class="prob-card" id="p9">
+  <div class="prob-header">
+    <div class="prob-num">P9</div>
+    <div class="prob-text" style="flex:1;padding:0;">Problema d'edats (III)</div>
+    <span class="prob-tag pt-ed">Edats</span>
+  </div>
+  <div class="prob-body">
+    <p class="prob-text">La iaia té 5 vegades l'edat del seu nét. D'aquí a 10 anys, la suma de les seves edats serà 100. Quants anys té cadascun ara?</p>
+  </div>
+</div>
+
+<!-- P10 -->
+<div class="prob-card" id="p10">
+  <div class="prob-header">
+    <div class="prob-num">P10</div>
+    <div class="prob-text" style="flex:1;padding:0;">Problema d'edats (IV) — amb fraccions</div>
+    <span class="prob-tag pt-ed">Edats</span>
+  </div>
+  <div class="prob-body">
+    <p class="prob-text">Ara, l'edat de l'Anna és \(\dfrac{2}{3}\) de l'edat del seu germà gran. D'aquí a 8 anys, l'Anna tindrà 4 anys menys que el seu germà. Quants anys té cadascun ara?</p>
+  </div>
+</div>
+
+</main>
+
+<script>
+function tog(bodyId, btnId) {
+  const body = document.getElementById(bodyId);
+  const btn  = document.getElementById(btnId);
+  const open = body.classList.toggle('visible');
+  btn.classList.toggle('open', open);
+  btn.innerHTML = open
+    ? '<span class="ch">▲</span>&nbsp;Amaga la resposta'
+    : '<span class="ch">▼</span>&nbsp;Mostra la resposta';
+}
+</script>
+</body>
+</html>
